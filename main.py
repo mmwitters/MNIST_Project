@@ -10,11 +10,13 @@ X, y = fetch_openml('mnist_784', version=1, return_X_y=True, parser='auto')
 #dataset from: https://www.openml.org/search?type=data&sort=runs&id=554&status=active
 
 X = X / 255.
-
 # rescale the data, use the traditional train/test split
 X_train, X_test = X[:60000], X[60000:]
 y_train, y_test = y[:60000], y[60000:]
 
-as_arr = np.array(X.iloc[0])
+row_num = 45
+as_arr = np.array(X.iloc[row_num].values).reshape((28, 28))
+print(y.iloc[row_num])
 
-img_plt = plt.imshow(as_arr.reshape(28,28), cmap='gray')
+plt.imshow(as_arr, cmap='gray')
+plt.show()
