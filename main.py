@@ -23,10 +23,13 @@ as_arr = np.array(X.iloc[row_num].values).reshape((28, 28))
 # plt.imshow(as_arr, cmap='gray')
 # plt.show()
 
-mlp = MLPClassifier(hidden_layer_sizes=(50,), max_iter=10, alpha=1e-4,
-                    solver='sgd', verbose=10, random_state=1,
+mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=15, alpha=1e-4,
+                    solver='sgd', verbose=True,
                     learning_rate_init=.1)
 
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn")
     mlp.fit(X_train, y_train)
+
+print("Training set score: ", mlp.score(X_train, y_train))
+print("Test set score: ", mlp.score(X_test, y_test))
