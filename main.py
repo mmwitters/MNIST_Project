@@ -43,3 +43,5 @@ with warnings.catch_warnings():
 print("Training set score SVC: ", svm.score(X_train, y_train))
 print("Test set score SVC: ", svm.score(X_test, y_test))
 
+#TODO: implement GridSearchCV for SVC for C and gamma
+
