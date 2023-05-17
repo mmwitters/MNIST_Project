@@ -11,7 +11,7 @@ from sklearn.neural_network import MLPClassifier
 X, y = fetch_openml('mnist_784', version=1, return_X_y=True, parser='auto')
 #dataset from: https://www.openml.org/d/554
 
-X = X / 255.
+X = X / 255. #performing normalization
 
 X_train, X_test = X[:60000], X[60000:]
 y_train, y_test = y[:60000], y[60000:]
@@ -23,7 +23,7 @@ as_arr = np.array(X.iloc[row_num].values).reshape((28, 28))
 # plt.imshow(as_arr, cmap='gray')
 # plt.show()
 
-mlp = MLPClassifier(hidden_layer_sizes=(100,), alpha=1e-4,
+mlp = MLPClassifier(hidden_layer_sizes=(50,), alpha=1e-4,
                     solver='sgd', verbose=True,
                     learning_rate_init=.1)
 
