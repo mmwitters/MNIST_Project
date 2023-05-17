@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.datasets import fetch_openml
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
 
 
 X, y = fetch_openml('mnist_784', version=1, return_X_y=True, parser='auto')
@@ -27,10 +28,18 @@ mlp = MLPClassifier(hidden_layer_sizes=(50,), alpha=1e-4,
                     solver='sgd', verbose=True,
                     learning_rate_init=.1)
 
-# with warnings.catch_warnings():
-#     warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn")
-
 mlp.fit(X_train, y_train)
 
-print("Training set score: ", mlp.score(X_train, y_train))
-print("Test set score: ", mlp.score(X_test, y_test))
+print("Training set score MLP: ", mlp.score(X_train, y_train))
+print("Test set score MLP: ", mlp.score(X_test, y_test))
+
+svm = SVC(max_iter=35)
+
+with warnings.catch_warnings():
+    warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn")
+    svm.fit(X_train, y_train)
+
+
+print("Training set score SVC: ", svm.score(X_train, y_train))
+print("Test set score SVC: ", svm.score(X_test, y_test))
+
